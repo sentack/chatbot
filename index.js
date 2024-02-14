@@ -1,6 +1,8 @@
 import openai from "./config/open-ai.js";
 import readlineSync from 'readline-sync';
 import colors from 'colors';
+import { translate } from '@vitalets/google-translate-api';
+
 
 async function main(){
 
@@ -11,7 +13,10 @@ async function main(){
 
 
     while(true){
-        const userInput = readlineSync.question(colors.yellow('You: '));
+        const question = readlineSync.question(colors.yellow('You: '));
+        const { text } = await translate(question, { to: 'en' });
+        const userInput = text;
+        
 
         try{
             const messages = chatHistory.map(([role, content]) => ({role, content}));
@@ -22,9 +27,14 @@ async function main(){
                 model: "gpt-3.5-turbo",
                 messages: messages,
               });
+            
+            
             const completionText = chatCompletion.choices[0].message.content;
+            
+            const { text } = await translate(completionText, { to: 'en' });
+            
 
-            console.log(colors.green('Bot: ') + completionText);
+            console.log(colors.green('Bot: ') + text);
 
             chatHistory.push(['user', userInput]);
             chatHistory.push(['assistant', completionText]);
