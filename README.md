@@ -33,7 +33,7 @@
   GOOGLE_TRANSLATE_API_KEY=your_api_key_here
   Replace your_api_key_here with your actual API keys.
   
-  ### Usage
+  ## Usage
   Start the chatbot by running the following command:
   
   Copy
