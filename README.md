@@ -38,15 +38,11 @@
   ## Usage
   Start the chatbot by running the following command:
   ```
-  Copy
   npm start
   ```
+  ```
   The chatbot will prompt you for questions. Enter your question in any language supported by Google Translate.
-  ```
-  ```
   The chatbot will translate the question to English using the Google Translate API and provide a response in the requested language.
-  ```
-  ```
   The chatbot will continue to provide responses until you enter "exit" to exit the program.
   ```  
   ## Contributing
