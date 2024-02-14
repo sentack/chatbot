@@ -19,46 +19,31 @@
   - Access to the ChatGPT 3.5 API. Make sure you have the necessary API credentials.
   
   ### Installation
+    
+  Clone this repository to your local machine.
   
-  1. Clone this repository to your local machine.
-  2. Install the required dependencies by running the following command:
+  Install the required dependencies by running the following command:
   
-     ```
-     npm install
-     ```
+  Copy
+  npm install
+  Set up your API credentials by creating a .env file in the root directory of the project and adding your credentials in the following format:
   
-  3. Set up your API credentials by creating a `.env` file in the root directory of the project and adding your credentials in the following format:
+  Copy
+  OPENAI_API_KEY=your_api_key_here
+  GOOGLE_TRANSLATE_API_KEY=your_api_key_here
+  Replace your_api_key_here with your actual API keys.
   
-     ```
-     OPENAI_API_KEY=your_api_key_here
-     GOOGLE_TRANSLATE_API_KEY=your_api_key_here
-     ```
+  ### Usage
+  Start the chatbot by running the following command:
   
-     Replace `your_api_key_here` with your actual API keys.
+  Copy
+  npm start
+  The chatbot will prompt you for questions. Enter your question in any language supported by Google Translate.
   
-  ## Usage
+  The chatbot will translate the question to English using the Google Translate API and provide a response in the requested language.
   
-  1. Start the chatbot by running the following command:
-  
-     ```
-     npm start
-     ```
-  
-  2. The chatbot will listen for incoming questions on a specific endpoint (e.g., `http://localhost:3000/chat`).
-  
-  3. Send a POST request to the chatbot's endpoint with the following payload:
-  
-     ```json
-     {
-       "question": "Your question goes here",
-       "language": "afan-oromo"
-     }
-     ```
-  
-     Replace `"Your question goes here"` with your actual question, and `"afan-oromo"` with the desired language code. The available language codes are: `afan-oromo`, `amharic`, `tigrigna`, and `english` (default).
-  
-  4. The chatbot will translate the question to English using the Google Translate API and provide a response in the requested language.
-  
+  The chatbot will continue to provide responses until you enter "exit" to exit the program.
+    
   ## Contributing
   
   Contributions to this project are welcome. If you encounter any issues or have suggestions for improvements, please submit bug reports or feature requests through the issue tracker.
