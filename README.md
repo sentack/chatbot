@@ -25,16 +25,16 @@
   
   Install the required dependencies by running the following command:
   ```
-  Copy
   npm install
+  ```
   Set up your API credentials by creating a .env file in the root directory of the project and adding your credentials in the following format:
+  
   ```
-  ```
-  Copy
   OPENAI_API_KEY=your_api_key_here
   GOOGLE_TRANSLATE_API_KEY=your_api_key_here
-  Replace your_api_key_here with your actual API keys.
   ```
+  Replace your_api_key_here with your actual API keys.
+ 
   ## Usage
   Start the chatbot by running the following command:
   ```
