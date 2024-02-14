@@ -1,4 +1,4 @@
-  Chatbot
+#  Chatbot
   
   This repository contains a chatbot powered by the ChatGPT 3.5 API and implemented using Node.js. The chatbot is designed to accept questions in multiple languages, which are then translated to English using the Google Translate API. The chatbot provides answers in the user's chosen language, with support for Afan Oromo, Amharic, Tigrigna, and English (default).
   
