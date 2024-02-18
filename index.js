@@ -25,11 +25,14 @@ async function main(question){
         chatHistory.push(['user', userInput]);
         chatHistory.push(['assistant', completionText]);
 
+        console.log(chatHistory);
+        
         if (userInput.toLowerCase() == 'exit'){
             return;
         }
 
         return completionText;
+
 
     }catch(error){
         console.log(colors.red(error));

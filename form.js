@@ -1,25 +1,39 @@
 import express from 'express';
 import main from './index.js';
+import bodyParser from 'body-parser';
 
 const port = process.env.PORT || 5000;
 
 const app = express();
 
+app.set('view engine', 'ejs');
+
 const chatHistory = [];
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}))
 
-app.use(express.json());
-
-app.use(express.urlencoded());
-
-app.get('/', (req,res)=>{
-    res.sendFile('/public/index.html', { root: '.' });
-})
+// index page
+app.get('/', function(req, res) {
+    res.render('pages/index', {
+        chatHistory: chatHistory
+    });
+  });
+  
+  // about page
+  app.get('/about', function(req, res) {
+    res.render('pages/about');
+  });
 
 
 app.post('/', (req,res)=>{
     const question = req.body.name;
     callMain(question);
+    res.render("pages/index", {
+        chatHistory: chatHistory
+    })
 })
 
 
