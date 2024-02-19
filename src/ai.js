@@ -1,8 +1,8 @@
-import openai from "./config/open-ai.js";
+import openai from "../config/open-ai.js";
 import readlineSync from 'readline-sync';
 import colors from 'colors';
 import { translate } from '@vitalets/google-translate-api';
-import {chatHistory, chatHistory2} from './ai.js';
+import {chatHistory, chatHistory2} from './server.js';
 
 
 async function main(question){
