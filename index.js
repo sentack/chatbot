@@ -1,46 +1,66 @@
-import openai from "./config/open-ai.js";
-import readlineSync from 'readline-sync';
-import colors from 'colors';
-import { translate } from '@vitalets/google-translate-api';
-import {chatHistory, chatHistory2} from './form.js';
+import express from 'express';
+import main from './ai.js';
+import bodyParser from 'body-parser';
+import WebSocket, { WebSocketServer } from 'ws';
+import http from 'http';
+
+const port = process.env.PORT || 5000;
+
+const app = express();
+const server = http.createServer(app);
+const wss = new WebSocketServer({server});
 
 
-async function main(question){
+app.set('view engine', 'ejs');
 
-    const { text } = await translate(question, { to: 'en' });
-    const userInput = text;        
+export const chatHistory = [];
+export const chatHistory2 = [];
 
-    try{
-        const messages = chatHistory.map(([role, content]) => ({role, content}));
-
-        messages.push({role: 'user', content: userInput})
-
-        const chatCompletion = await openai.chat.completions.create({
-            model: "gpt-3.5-turbo",
-            messages: messages,
-        });
-            
-        const completionText = chatCompletion.choices[0].message.content;            
-
-        chatHistory.push(['user', userInput]);
-        chatHistory.push(['assistant', completionText]);
-
-        //printout
-        chatHistory2.push(['user', question]);
-        chatHistory2.push(['assistant', completionText]);
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}))
 
 
-        if (userInput.toLowerCase() == 'exit'){
-            return;
-        }
+// Handle WebSocket connections
+wss.on('connection', (ws) => {
+  console.log('A client connected.');
 
-        return completionText;
 
-        
-    }catch(error){
-        console.log(colors.red(error));
-    }
+  // Handle disconnections
+  ws.on('close', () => {
+    console.log('A client disconnected.');
+  });
+});
+
+
+// index page
+app.get('/', function(req, res) {
+    res.render('pages/index', {
+        chatHistory: chatHistory2
+    });
+  });
+  
+  // about page
+  app.get('/about', function(req, res) {
+    res.render('pages/about');
+  });
+
+
+app.post('/', (req,res)=>{
+    const question = req.body.name;
+    main(question);    
+    res.render("pages/index", {
+        chatHistory: chatHistory2
+    });
+})
+
+
+app.listen(port, ()=>{
+    console.log('Server started ')
+});
+
+async function callMain(question) {
+    const result = await main(question);
+    console.log(result);
 }
-
-
-export default main;
