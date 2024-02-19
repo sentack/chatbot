@@ -30,10 +30,11 @@ app.get('/', function(req, res) {
 
 app.post('/', (req,res)=>{
     const question = req.body.name;
-    callMain(question);
+    main(question);
+    
     res.render("pages/index", {
         chatHistory: chatHistory
-    })
+    });
 })
 
 
@@ -48,10 +49,3 @@ async function callMain(question) {
 
 
 export default chatHistory;
-
-
-
-
-
-
-

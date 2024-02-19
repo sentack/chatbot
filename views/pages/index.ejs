@@ -12,13 +12,13 @@
 <div class="row">
   <div class="col-lg-8">
     <div class="chat-container">
-      <form action="" method="post">
+      <form id="ask" action="" method="post">
       <div class="chat-input">
         <input type="text" name="name" id="user-input" placeholder="Type your message...">
         <input type="submit" id="send-button" value="Send">  
       </div>
     </form> 
-      <div class="chat-log">
+      <div class="chat-log" id="chatSection">
         <% chatHistory.forEach(element => {  
           if (element[0] == 'user'){ %>
             <div class="message user-message">
@@ -34,7 +34,7 @@
           else{ %>
             <div class="message bot-message">
               <div class="avatar">
-                <img src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="Bot Avatar">
+                <img src="https://img.icons8.com/color/36/000000/bot" alt="Bot Avatar">
               </div>
               <div class="message-content">
                 <%= element[1] %> 
@@ -56,6 +56,12 @@
         <p>The chatbot is designed to receive questions in English, Afan Oromo, Amharic, and Tigrigna, providing users with a convenient platform to seek information and assistance.</p>
         <p>Although the current version of the chatbot responds exclusively in English, the plans to expand its language capabilities in the future demonstrate the commitment to inclusivity and accessibility.</p>        
       </div>
+      <h5>Disclaimer:</h5>
+      <div class="text">
+        <p>There are many bugs that have not been fixed!</p>
+        <p>You can report them to me directly or wait until I fix them</p>
+      </div>
+      <h5>Enjoy Using The Bot!</h5>
       </div>
 
   </div>
@@ -68,6 +74,14 @@
 <!-- vendor script files -->
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the chat section element
+    var chatSection = document.getElementById('chatSection');
 
+    // Set the scroll position to the bottom
+    chatSection.scrollTop = chatSection.scrollHeight;
+});
+</script>
 </body>
 </html>
