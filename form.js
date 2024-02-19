@@ -1,24 +1,43 @@
 import express from 'express';
 import main from './index.js';
 import bodyParser from 'body-parser';
+import WebSocket, { WebSocketServer } from 'ws';
+import http from 'http';
 
 const port = process.env.PORT || 5000;
 
 const app = express();
+const server = http.createServer(app);
+const wss = new WebSocketServer({server});
+
 
 app.set('view engine', 'ejs');
 
-const chatHistory = [];
+export const chatHistory = [];
+export const chatHistory2 = [];
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }))
 
+
+// Handle WebSocket connections
+wss.on('connection', (ws) => {
+  console.log('A client connected.');
+
+
+  // Handle disconnections
+  ws.on('close', () => {
+    console.log('A client disconnected.');
+  });
+});
+
+
 // index page
 app.get('/', function(req, res) {
     res.render('pages/index', {
-        chatHistory: chatHistory
+        chatHistory: chatHistory2
     });
   });
   
@@ -30,10 +49,9 @@ app.get('/', function(req, res) {
 
 app.post('/', (req,res)=>{
     const question = req.body.name;
-    main(question);
-    
+    main(question);    
     res.render("pages/index", {
-        chatHistory: chatHistory
+        chatHistory: chatHistory2
     });
 })
 
@@ -46,6 +64,3 @@ async function callMain(question) {
     const result = await main(question);
     console.log(result);
 }
-
-
-export default chatHistory;

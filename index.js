@@ -2,7 +2,7 @@ import openai from "./config/open-ai.js";
 import readlineSync from 'readline-sync';
 import colors from 'colors';
 import { translate } from '@vitalets/google-translate-api';
-import chatHistory from './form.js'
+import {chatHistory, chatHistory2} from './form.js';
 
 
 async function main(question){
@@ -24,6 +24,10 @@ async function main(question){
 
         chatHistory.push(['user', userInput]);
         chatHistory.push(['assistant', completionText]);
+
+        //printout
+        chatHistory2.push(['user', question]);
+        chatHistory2.push(['assistant', completionText]);
 
 
         if (userInput.toLowerCase() == 'exit'){

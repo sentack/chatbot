@@ -9,7 +9,11 @@
   <%- include('../partials/header'); %>
 </header> 
 
-<div class="row">
+<div class="alert alert-danger mt-2" role="alert">
+  Please refresh the page every time u ask a question! It will be fixed for the next version. (pinky promise hhh)
+</div>
+
+<div class="row mb-2">
   <div class="col-lg-8">
     <div class="chat-container">
       <form id="ask" action="" method="post">
@@ -58,10 +62,10 @@
       </div>
       <h5>Disclaimer:</h5>
       <div class="text">
-        <p>There are many bugs that have not been fixed!</p>
-        <p>You can report them to me directly or wait until I fix them</p>
+        <p>There are many bugs that have not been fixed! You can report them to me directly or wait until I fix them</p>
+        <p>And of course I wrote the above paragraph using this bot. :) </p>
       </div>
-      <h5>Enjoy Using The Bot!</h5>
+      <h5>Tejajalubet ende temechachu hhh!</h5>
       </div>
 
   </div>
@@ -74,6 +78,7 @@
 <!-- vendor script files -->
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://cdn.socket.io/4.3.1/socket.io.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Get the chat section element
