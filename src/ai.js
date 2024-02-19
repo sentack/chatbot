@@ -1,6 +1,4 @@
 import openai from "../config/open-ai.js";
-import readlineSync from 'readline-sync';
-import colors from 'colors';
 import { translate } from '@vitalets/google-translate-api';
 import {chatHistory, chatHistory2} from './server.js';
 
@@ -38,7 +36,7 @@ async function main(question){
 
         
     }catch(error){
-        console.log(colors.red(error));
+        console.log(error);
     }
 }
 
