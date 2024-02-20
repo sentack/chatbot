@@ -1,5 +1,5 @@
 import express from 'express';
-import main from './ai.js';
+import main from './src/ai.js';
 import bodyParser from 'body-parser';
 import WebSocket, { WebSocketServer } from 'ws';
 import http from 'http';
