@@ -48,10 +48,16 @@ app.get('/', function(req, res) {
 
 
 app.post('/', (req,res)=>{
-    const question = req.body.name;
-    main(question);    
-    res.render("pages/index", {
+  const question = req.body.question;
+  main(question)
+    .then(() => {
+      res.render("pages/index", {
         chatHistory: chatHistory2
+      });
+    })
+    .catch(error => {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
     });
 })
 
@@ -60,7 +66,3 @@ app.listen(port, ()=>{
     console.log('Server started ')
 });
 
-async function callMain(question) {
-    const result = await main(question);
-    console.log(result);
-}

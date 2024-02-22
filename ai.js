@@ -6,7 +6,8 @@ import {chatHistory, chatHistory2} from './server.js';
 async function main(question){
 
     const { text } = await translate(question, { to: 'en' });
-    const userInput = text;        
+    const userInput = text;  
+    
 
     try{
         const messages = chatHistory.map(([role, content]) => ({role, content}));
@@ -26,14 +27,6 @@ async function main(question){
         //printout
         chatHistory2.push(['user', question]);
         chatHistory2.push(['assistant', completionText]);
-
-
-        if (userInput.toLowerCase() == 'exit'){
-            return;
-        }
-
-        return completionText;
-
         
     }catch(error){
         console.log(error);
