@@ -10,7 +10,7 @@
 </header> 
 
 <div class="alert alert-danger mt-2" role="alert">
-  <p>As u can see everyone elses history is saved on the server so have fun andlay---And also use geez font to ask in amharic or Tigrigna!</p>
+  <p>Use geez font to ask in amharic or Tigrigna!</p>
 </div>
 
 <div class="row mb-2">
@@ -18,7 +18,7 @@
     <div class="chat-container">
       <form id="ask" action="" method="post">
         <div class="chat-input">          
-          <button id="clearCookiesBtn" class="clear-cookies-btn">
+          <button id="clearHistory" class="clear-history-btn">
             <i class="fas fa-trash-alt"></i>
           </button>
           <input type="text" name="question" id="user-input" placeholder="Type your message...">
@@ -68,9 +68,7 @@
         <p>There are many bugs that have not been fixed! You can report them to me directly or wait until I fix them</p>
         <p>And of course I wrote the above paragraph using this bot. :) </p>
       </div>
-      <h5>Tejajalubet ende temechachu hhh!</h5>
-      </div>
-
+    </div>
   </div>
 </div>
 
@@ -90,6 +88,19 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set the scroll position to the bottom
     chatSection.scrollTop = chatSection.scrollHeight;
 });
+const clearCookiesBtn = document.getElementById('clearHistory');
+
+    clearCookiesBtn.addEventListener('click', async () => {
+      try {
+        await fetch('/', {
+          method: 'PUT'
+        }).then(() => {
+          window.location.reload();
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    });
 </script>
 </body>
 </html>

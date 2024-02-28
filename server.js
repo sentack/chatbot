@@ -31,13 +31,7 @@ app.get('/', function(req, res) {
     res.render('pages/index', {
         chatHistory: chatHistory2
     });
-  });
-  
-  // about page
-  app.get('/about', function(req, res) {
-    res.render('pages/about');
-  });
-
+});
 
 app.post('/', (req,res)=>{
   const question = req.body.question;
@@ -55,7 +49,18 @@ app.post('/', (req,res)=>{
       console.error(error);
       res.status(500).send('Internal Server Error');
     });
-})
+});
+
+app.put('/', (req, res) => {
+  res.clearCookie('chatHistory');
+  res.clearCookie('chatHistory2');
+  res.sendStatus(200);
+});
+
+// about page
+app.get('/about', function(req, res) {
+  res.render('pages/about');
+});
 
 
 app.listen(port, ()=>{
