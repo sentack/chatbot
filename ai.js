@@ -1,6 +1,6 @@
 import openai from "./config/open-ai.js";
 import { translate } from '@vitalets/google-translate-api';
-import {chatHistory, chatHistory2} from './server.js';
+import { chatHistory, chatHistory2 } from "./server.js";
 
 
 async function main(question){
