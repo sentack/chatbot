@@ -7,7 +7,7 @@ import cookieParser from 'cookie-parser';
 
 
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3000;
 
 const app = express();
 const server = http.createServer(app);
