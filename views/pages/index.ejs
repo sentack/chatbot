@@ -1,106 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <%- include('../partials/head'); %>
-</head>
-<body class="container">
+  <head>
+    <%- include('../partials/head'); %>
+  </head>
+  <body class="container">
+    <header><%- include('../partials/header'); %></header>
 
-<header>
-  <%- include('../partials/header'); %>
-</header> 
+    <div class="alert alert-danger mt-2" role="alert">
+      <p>Use geez font to ask in amharic or Tigrigna!</p>
+    </div>
 
-<div class="alert alert-danger mt-2" role="alert">
-  <p>Use geez font to ask in amharic or Tigrigna!</p>
-</div>
-
-<div class="row mb-2">
-  <div class="col-lg-8">
-    <div class="chat-container">
-      <form id="ask" action="" method="post">
-        <div class="chat-input">          
-          <button id="clearHistory" class="clear-history-btn">
-            <i class="fas fa-trash-alt"></i>
-          </button>
-          <input type="text" name="question" id="user-input" placeholder="Type your message...">
-          <input type="submit" id="send-button" value="Send">  
-        </div>
-      </form> 
-      <div class="chat-log" id="chatSection">
-        <% chatHistory.forEach(element => {  
-          if (element[0] == 'user'){ %>
+    <div class="row mb-2">
+      <div class="col-lg-8">
+        <div class="chat-container">
+          <form id="ask" action="" method="post">
+            <div class="chat-input">
+              <button
+                id="clearHistory"
+                class="clear-history-btn"
+                aria-label="Clear History"
+              >
+                <i class="fas fa-trash-alt"></i>
+                <span class="tooltip">Clear History</span>
+              </button>
+              <input
+                type="text"
+                name="question"
+                id="user-input"
+                placeholder="Type your message..."
+              />
+              <input type="submit" id="send-button" value="Send" />
+            </div>
+          </form>
+          <div class="chat-log" id="chatSection">
+            <% chatHistory.forEach(element => { if (element[0] == 'user'){ %>
             <div class="message user-message">
-              <div class="message-content">
-                <%= element[1] %>                
-              </div>
+              <div class="message-content"><%= element[1] %></div>
               <div class="avatar">
-                <img src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="User Avatar">
-              </div>
-            </div>        
-            <% 
-          }
-          else{ %>
-            <div class="message bot-message">
-              <div class="avatar">
-                <img src="https://img.icons8.com/color/36/000000/bot" alt="Bot Avatar">
-              </div>
-              <div class="message-content">
-                <%= element[1] %> 
+                <img
+                  src="https://img.icons8.com/color/36/000000/administrator-male.png"
+                  alt="User Avatar"
+                />
               </div>
             </div>
-            <%
-          }
-        }) %>        
+            <% } else{ %>
+            <div class="message bot-message">
+              <div class="avatar">
+                <img
+                  src="https://img.icons8.com/color/36/000000/bot"
+                  alt="Bot Avatar"
+                />
+              </div>
+              <div class="message-content"><%= element[1] %></div>
+            </div>
+            <% } }) %>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="about-section">
+          <div class="title">
+            <h3>About</h3>
+          </div>
+          <div class="text">
+            <p>
+              This chatbot was created to test the ChatGPT 3.5 API and to
+              explore the use of Express.js, as well as to understand the .ejs
+              file format.
+            </p>
+            <p>
+              The chatbot is designed to accept questions in any language of
+              your choice.
+            </p>
+            <p>
+              Although the current version of the chatbot responds exclusively
+              in English, you can use the Google Translate API included here to
+              translate the responses into the user's preferred language.
+            </p>
+            <p>
+              There are many bugs that have yet to be fixed! Feel free to try
+              fixing them yourself and adding more features.
+            </p>
+            <p>And of course, I wrote the above paragraph using this bot! :)</p>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="col-lg-4">
-    <div class="about-section">
-      <div class="title">
-        <h3>About</h3>
-      </div>
-      <div class="text">
-        <p>This chatbot, developed by Sena Takele (Sentack), represents an innovative solution for facilitating effective and efficient communication across language barriers.</p>
-        <p>The chatbot is designed to receive questions in English, Afan Oromo, Amharic, and Tigrigna, providing users with a convenient platform to seek information and assistance.</p>
-        <p>Although the current version of the chatbot responds exclusively in English, the plans to expand its language capabilities in the future demonstrate the commitment to inclusivity and accessibility.</p>        
-      </div>
-      <h5>Disclaimer:</h5>
-      <div class="text">
-        <p>There are many bugs that have not been fixed! You can report them to me directly or wait until I fix them</p>
-        <p>And of course I wrote the above paragraph using this bot. :) </p>
-      </div>
-    </div>
-  </div>
-</div>
 
-<footer>
-  <%- include('../partials/footer'); %>
-</footer>
+    <footer><%- include('../partials/footer'); %></footer>
 
-<!-- vendor script files -->
-<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script src="https://cdn.socket.io/4.3.1/socket.io.min.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Get the chat section element
-    var chatSection = document.getElementById('chatSection');
+    <!-- vendor script files -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdn.socket.io/4.3.1/socket.io.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Get the chat section element
+        var chatSection = document.getElementById("chatSection");
 
-    // Set the scroll position to the bottom
-    chatSection.scrollTop = chatSection.scrollHeight;
-});
-const clearCookiesBtn = document.getElementById('clearHistory');
+        // Set the scroll position to the bottom
+        chatSection.scrollTop = chatSection.scrollHeight;
+      });
+      const clearCookiesBtn = document.getElementById("clearHistory");
 
-    clearCookiesBtn.addEventListener('click', async () => {
-      try {
-        await fetch('/', {
-          method: 'PUT'
-        }).then(() => {
-          window.location.reload();
-        });
-      } catch (error) {
-        console.error(error);
-      }
-    });
-</script>
-</body>
+      clearCookiesBtn.addEventListener("click", async () => {
+        try {
+          await fetch("/", {
+            method: "PUT",
+          }).then(() => {
+            window.location.reload();
+          });
+        } catch (error) {
+          console.error(error);
+        }
+      });
+    </script>
+  </body>
 </html>

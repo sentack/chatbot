@@ -1,11 +1,13 @@
-body { padding-top:25px; }
+body {
+  padding-top: 25px;
+}
 * {
   box-sizing: border-box;
 }
 
 body {
   background-color: #edeff2;
-  font-family: 'Calibri', 'Roboto', sans-serif;
+  font-family: "Calibri", "Roboto", sans-serif;
 }
 
 .row.padded_row,
@@ -87,7 +89,7 @@ body {
 .messages .message .text_wrapper:before {
   top: 18px;
   border: solid transparent;
-  content: ' ';
+  content: " ";
   height: 0;
   width: 0;
   position: absolute;
@@ -108,7 +110,7 @@ body {
 
 .messages .message.left .avatar {
   float: left;
-  background: url('./img/bot.jpg');
+  background: url("./img/bot.jpg");
 }
 
 .messages .message.left .text_wrapper {
@@ -130,7 +132,7 @@ body {
 
 .messages .message.right .avatar {
   float: right;
-  background: url('./img/guy.jpg');
+  background: url("./img/guy.jpg");
 }
 
 .messages .message.right .text_wrapper {
@@ -187,9 +189,9 @@ body {
   margin: 20px;
 }
 
-.panel-heading [data-toggle='collapse']:after {
-  font-family: 'FontAwesome';
-  content: '\f054';
+.panel-heading [data-toggle="collapse"]:after {
+  font-family: "FontAwesome";
+  content: "\f054";
   float: right;
   font-size: 18px;
   line-height: 22px;
@@ -202,10 +204,41 @@ body {
   transform: rotate(-90deg);
 }
 
-.panel-heading [data-toggle='collapse'].collapsed:after {
+.panel-heading [data-toggle="collapse"].collapsed:after {
   -webkit-transform: rotate(90deg);
   -moz-transform: rotate(90deg);
   -ms-transform: rotate(90deg);
   -o-transform: rotate(90deg);
   transform: rotate(90deg);
+}
+
+/* Clear History Button */
+
+.clear-history-btn {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.tooltip {
+  visibility: hidden;
+  width: 100px;
+  background-color: black;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* Position the tooltip above the button */
+  left: 50%;
+  margin-left: -50px; /* Center the tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.clear-history-btn:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
 }
