@@ -37,8 +37,10 @@ function App() {
     setError(null);
     setIsLoading(true);
 
+    const apiUrl = process.env.API_URL;
+
     try {
-      const response = await fetch("http://localhost:5000/api/respond", {
+      const response = await fetch(`${apiUrl}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
