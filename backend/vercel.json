@@ -9,7 +9,6 @@
   "builds": [
     {
       "src": "package.json",
-      "dest": ".",
       "use": "@vercel/static"
     }
   ]
