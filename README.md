@@ -1,81 +1,142 @@
-# Chatbot
+# 🧠 DeepSeek-R1 Chat Application
 
-This repository contains a chatbot powered by the ChatGPT 3.5 API and implemented using Node.js. The chatbot is designed to accept questions in multiple languages, which are then translated to English using the Google Translate API. The chatbot provides answers in English only. It's just a silly chatbot made for fun :)
+A beautiful, modern AI chat application powered by DeepSeek-R1 model with dark/light mode, code highlighting, and a responsive design.
 
-## Table of Contents
+![DeepSeek-R1 Chat App](https://placeholder.svg?height=400&width=800)
 
-- [Getting Started](#getting-started)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+## ✨ Features
 
-## Getting Started
+- 🌙 **Dark/Light Mode** - Beautiful theme switching with smooth transitions
+- 💬 **Real-time Chat** - Instant messaging with AI responses
+- 📋 **Code Detection** - Automatic code block detection with copy functionality
+- 🧠 **DeepSeek-R1 Model** - Powered by the advanced DeepSeek-R1 AI model
+- 📱 **Responsive Design** - Works on all devices with adaptive layout
+- 🔄 **Chat History** - Save and restore chat sessions
+- 🎨 **Beautiful UI** - Modern design with animations and transitions
+- 📚 **About Section** - Learn about the DeepSeek-R1 model capabilities
+- 🧩 **Sidebar Navigation** - Easy access to all app features
+
+## 🚀 Getting Started
 
 ### Prerequisites
 
-To use the chatbot, you'll need the following:
+- Node.js (v14 or higher)
+- npm or yarn
+- OpenAI API Key (for backend)
 
-```
-- Node.js installed on your machine.
-- Access to the ChatGPT 3.5 API. Make sure you have the necessary API credentials.
-- Make sure to use the latest version of `@vitalets/google-translate-api` npm package used for translation purposes.
-```
+### Backend Setup
 
-### Installation
+1. Clone the repository
+   \`\`\`bash
+   git clone https://github.com/sentack/chatbot.git
+   cd chatbot
+   \`\`\`
 
-Clone this repository to your local machine.
+2. Navigate to backend directory
+   \`\`\`bash
+   cd backend
+   \`\`\`
 
-Install the required dependencies by running the following command:
+3. Install dependencies
+   \`\`\`bash
+   npm install
+   \`\`\`
 
-```
-npm install
-```
+4. Go to OpenRouter website and acquire your API key:
+   \`\`\`
+   https://openrouter.ai/
+   \`\`\`
 
-Set up your API credentials by creating a .env file in the root directory of the project and adding your credentials in the following format:
+5. Create a `.env` file in the backend directory with your API key:
+   \`\`\`
+   OPENROUTER_API_KEY=your_api_key_here
+   PORT:5000
+   \`\`\`
 
-```
-OPENAI_API_KEY=your_api_key_here
-```
+6. Start the backend server
+   \`\`\`bash
+   npm run dev
+   \`\`\`
 
-Replace your_api_key_here with your actual API keys.
+The backend server will start on http://localhost:5000
 
-## Usage
+### Frontend Setup
 
-Start the chatbot by running the following command:
+1. Open a new terminal and navigate to the frontend directory
+   \`\`\`bash
+   cd frontend
+   \`\`\`
 
-```
-npm start
-```
+2. Install dependencies
+   \`\`\`bash
+   npm install
+   \`\`\`
 
-```
-The chatbot will prompt you for questions. Enter your question in any language supported by Google Translate.
-The chatbot will translate the question to English using the Google Translate API and provide a response in the requested language.
-The chatbot will continue to provide responses until you enter "exit" to exit the program.
-```
+3. Start the frontend development server
+   \`\`\`bash
+   npm start
+   \`\`\`
 
-## Contributing
+The frontend application will start on http://localhost:3000
 
-Contributions to this project are welcome. If you encounter any issues or have suggestions for improvements, please submit bug reports or feature requests through the issue tracker.
+## 🔧 Usage Guide
 
-When contributing, please adhere to the following guidelines:
+### Chat Interface
 
-```
-- Fork the repository and create a new branch for your contributions.
-- Make your changes and ensure they are well-documented and tested.
-- Any change on the UI is appreciated :)
-- Submit a pull request, describing the changes you've made.
-```
+1. **Starting a Chat**: Type your message in the input field at the bottom and press Enter or click the Send button
+2. **Code Blocks**: When the AI responds with code, it will be automatically formatted with a copy button
+3. **Theme Toggle**: Switch between dark and light mode using the toggle in the sidebar
+4. **Sidebar Navigation**:
+   - **New Chat**: Start a fresh conversation
+   - **Clear Chat**: Clear the current conversation
+   - **Restore Chat**: Restore the previous conversation
+   - **About**: Learn about the web application
 
-## Screenshot
+### Code Features
 
-  <img src="screenshot.jpg" alt="screenshot" />
+The application automatically detects code blocks in the AI's responses. When code is detected:
 
-## License
+1. It's displayed in a formatted code block
+2. The programming language is identified and shown
+3. A copy button appears to easily copy the code
+4. Proper syntax highlighting is applied
 
-This project is not licensed.
+### Chat History
 
-## Contact
+The application maintains two chat histories:
 
-If you have any questions or feedback regarding the chatbot, you can reach out to the project maintainer at [sentak16@outlook.com](mailto:email@example.com).
+1. **Active Session** (chatHistory1): Your current conversation
+2. **Backup Session** (chatHistory2): Your previous conversation
 
-Thank you for using the chatbot!
+You can clear the current chat and restore the previous one using the sidebar navigation.
+
+## 🛠️ Technologies Used
+
+- **Frontend**:
+
+  - React.js
+  - TailwindCSS
+  - Framer Motion
+  - JavaScript (ES6+)
+
+- **Backend**:
+  - Express.js
+  - Node.js
+  - OpenAI SDK
+  - DEEPSEEK R1 MODEL
+  - OPENROUTER API KEY
+
+## 👨‍💻 Developer
+
+This application was developed by **Sena Takele**.
+
+- GitHub: [https://github.com/sentack](https://github.com/sentack)
+- Portfolio: [https://sentack-portfolio.vercel.app/](https://sentack-portfolio.vercel.app/)
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+---
+
+### [MADE WITH LOVE AND COFFEE BY SENTACK](https://sentack-portfolio.vercel.app/) ☕️❤️
