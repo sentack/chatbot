@@ -6,10 +6,5 @@
       "destination": "/server.js"
     }
   ],
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/static"
-    }
-  ]
+  "buildCommand": ""
 }
