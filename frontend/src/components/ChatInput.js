@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-const ChatInput = ({ onSendMessage, disabled }) => {
+const ChatInput = ({ onSendMessage, disabled, theme }) => {
   const [message, setMessage] = useState("");
 
   const handleSubmit = (e) => {
@@ -28,12 +28,25 @@ const ChatInput = ({ onSendMessage, disabled }) => {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           onKeyPress={handleKeyPress}
-          placeholder="Type your message... (Press Enter to send)"
+          placeholder="Type your message... (Press Enter to send, Shift+Enter for new line)"
           disabled={disabled}
           rows="1"
-          className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none disabled:opacity-50 disabled:cursor-not-allowed transition-all"
-          style={{ minHeight: "48px", maxHeight: "120px" }}
+          className={`w-full px-6 py-4 rounded-2xl focus:ring-2 focus:ring-offset-2 resize-none disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 shadow-lg backdrop-blur-sm ${
+            theme === "dark"
+              ? "bg-gray-800/80 border border-gray-700/50 text-gray-100 placeholder-gray-400 focus:ring-purple-500 focus:border-transparent focus:ring-offset-gray-900"
+              : "bg-white/80 border border-gray-300/50 text-gray-800 placeholder-gray-500 focus:ring-blue-500 focus:border-transparent focus:ring-offset-white"
+          }`}
+          style={{ minHeight: "56px", maxHeight: "120px" }}
         />
+
+        {/* Character count */}
+        <div
+          className={`absolute bottom-2 right-4 text-xs ${
+            theme === "dark" ? "text-gray-500" : "text-gray-400"
+          }`}
+        >
+          {message.length}/1000
+        </div>
       </div>
 
       <motion.button
@@ -41,18 +54,35 @@ const ChatInput = ({ onSendMessage, disabled }) => {
         whileTap={{ scale: disabled ? 1 : 0.95 }}
         type="submit"
         disabled={disabled || !message.trim()}
-        className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl hover:from-blue-600 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all font-medium shadow-lg"
+        className={`px-8 py-4 rounded-2xl font-semibold shadow-lg transition-all duration-300 ${
+          disabled || !message.trim()
+            ? theme === "dark"
+              ? "bg-gray-700 text-gray-500 cursor-not-allowed"
+              : "bg-gray-300 text-gray-500 cursor-not-allowed"
+            : theme === "dark"
+            ? "bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white shadow-purple-500/25"
+            : "bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white shadow-blue-500/25"
+        }`}
       >
         {disabled ? (
           <div className="flex items-center space-x-2">
-            <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{
+                duration: 1,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "linear",
+              }}
+              className="w-5 h-5 border-2 border-current border-t-transparent rounded-full"
+            />
             <span>Sending...</span>
           </div>
         ) : (
           <div className="flex items-center space-x-2">
             <span>Send</span>
-            <svg
-              className="w-4 h-4"
+            <motion.svg
+              whileHover={{ x: 2 }}
+              className="w-5 h-5"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -63,7 +93,7 @@ const ChatInput = ({ onSendMessage, disabled }) => {
                 strokeWidth={2}
                 d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
               />
-            </svg>
+            </motion.svg>
           </div>
         )}
       </motion.button>
