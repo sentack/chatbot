@@ -37,7 +37,7 @@ function App() {
     setError(null);
     setIsLoading(true);
 
-    const apiUrl = process.env.API_URL;
+    const apiUrl = toString(process.env.API_URL);
 
     try {
       const response = await fetch(`${apiUrl}`, {
